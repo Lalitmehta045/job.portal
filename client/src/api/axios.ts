@@ -1,8 +1,14 @@
 import axios from 'axios';
 
 // Create axios instance with base URL
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+
+if (import.meta.env.PROD && !import.meta.env.VITE_API_URL) {
+  console.warn('VITE_API_URL is not defined. Defaulting to localhost in production!');
+}
+
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1',
+  baseURL: apiUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,7 +38,7 @@ axiosInstance.interceptors.response.use(
       // Clear authentication state
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      
+
       // Redirect to login page
       window.location.href = '/login';
     }
