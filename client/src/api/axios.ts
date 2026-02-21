@@ -3,6 +3,8 @@ import axios from 'axios';
 // Create axios instance with base URL
 const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
+console.log('Using API URL:', apiUrl);
+
 if (import.meta.env.PROD && !import.meta.env.VITE_API_URL) {
   console.warn('VITE_API_URL is not defined. Defaulting to localhost in production!');
 }
