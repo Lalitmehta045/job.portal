@@ -54,6 +54,9 @@ app.use('/api/v1', applicationRoutes);
 app.use('/api/v1/saved', savedJobRoutes);
 app.use('/api/v1/admin', adminRoutes);
 
-app.listen(config.port, () => {
-  console.log(`Server running in ${config.nodeEnv} mode on port ${config.port}`);
+const port = config.port || 5000;
+app.listen(port, () => {
+  console.log(`Server running in ${config.nodeEnv} mode on port ${port}`);
 });
+
+module.exports = app;

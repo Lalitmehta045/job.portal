@@ -7,9 +7,17 @@
             "config": {
                 "distDir": "client/dist"
             }
+        },
+        {
+            "src": "server/server.js",
+            "use": "@vercel/node"
         }
     ],
     "rewrites": [
+        {
+            "source": "/api/v1/(.*)",
+            "destination": "server/server.js"
+        },
         {
             "source": "/(.*)",
             "destination": "/index.html"
